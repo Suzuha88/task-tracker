@@ -3,8 +3,9 @@ import sys
 
 import functions
 
+
 def main():
-    data = functions.get_data("tasks.json")          
+    data = functions.get_data("tasks.json")
     command = sys.argv[1]
 
     with open("tasks.json", "w") as file:
@@ -26,7 +27,6 @@ def main():
                 functions.list_all(data)
 
         json.dump(data, file)
-
 
 
 if __name__ == "__main__":

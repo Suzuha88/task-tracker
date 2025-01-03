@@ -3,7 +3,6 @@ import json
 from datetime import datetime
 
 
-
 def get_data(path):
     if not os.path.exists(path) or os.path.getsize(path) == 0:
         with open(path, "w") as file:
@@ -11,9 +10,8 @@ def get_data(path):
             data = []
     else:
         with open(path, "r") as file:
-            data = json.load(file) 
+            data = json.load(file)
     return data
- 
 
 
 def add(data, message):
@@ -32,21 +30,21 @@ def add(data, message):
 
 def update(data, id, message):
     time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-    
+
     data[id - 1]["description"] = message
     data[id - 1]["updatedAt"] = time
 
 
-
-
 def delete(data, id):
     del data[id - 1]
+
 
 def mark_in_progress(data, id):
     time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
 
     data[id - 1]["status"] = "in-progress"
     data[id - 1]["updatedAt"] = time
+
 
 def mark_done(data, id):
     time = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
@@ -58,8 +56,6 @@ def mark_done(data, id):
 def list_all(data, category=None):
     for i, todo in enumerate(data):
         todo["id"] = i + 1
-        
+
         if not category or category == todo["status"]:
             print(todo)
-
-
